@@ -238,11 +238,11 @@ pipeline {
             name: ${AOSP_MIRROR_PRESET_FILESTORE_PVC_NAME}
           resources:
             limits:
-              cpu: 98000m
-              memory: 180000Mi
+              cpu: 4000m
+              memory: 16Gi
             requests:
-              cpu: 98000m
-              memory: 180000Mi
+              cpu: 4000m
+              memory: 16Gi
 
         volumes:
         - name: ${AOSP_MIRROR_PRESET_FILESTORE_PVC_NAME}

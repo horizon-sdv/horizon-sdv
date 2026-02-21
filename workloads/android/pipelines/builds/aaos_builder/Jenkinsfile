@@ -85,11 +85,11 @@ pipeline {
           - 5h
           resources:
             limits:
-              cpu: 98000m
-              memory: 180000Mi
+              cpu: 4000m
+              memory: 16Gi
             requests:
-              cpu: 98000m
-              memory: 180000Mi
+              cpu: 4000m
+              memory: 16Gi
           volumeMounts:
             - mountPath: /aaos-cache
               name: aaos-cache
@@ -147,11 +147,11 @@ pipeline {
           - 5h
           resources:
             limits:
-              cpu: 98000m
-              memory: 180000Mi
+              cpu: 4000m
+              memory: 16Gi
             requests:
-              cpu: 98000m
-              memory: 180000Mi
+              cpu: 4000m
+              memory: 16Gi
           volumeMounts:
             - mountPath: /aaos-cache
               name: aaos-cache
