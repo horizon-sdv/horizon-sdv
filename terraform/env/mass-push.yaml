@@ -1,0 +1,36 @@
+steps:
+# 1. Image aus GCS holen und direkt in Docker laden
+- name: 'gcr.io/cloud-builders/gsutil'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    gsutil cp gs://mein-horizon-tf-state-horizon-sdv/kc-main.tar kc-main.tar
+    gsutil cp gs://mein-horizon-tf-state-horizon-sdv/kc-mcp.tar kc-mcp.tar
+    gsutil cp gs://mein-horizon-tf-state-horizon-sdv/kc-jenkins.tar kc-jenkins.tar
+    gsutil cp gs://mein-horizon-tf-state-horizon-sdv/kc-argo.tar kc-argo.tar
+    gsutil cp gs://mein-horizon-tf-state-horizon-sdv/kc-headlamp.tar kc-headlamp.tar
+    gsutil cp gs://mein-horizon-tf-state-horizon-sdv/grafana.tar grafana.tar
+    gsutil cp gs://mein-horizon-tf-state-horizon-sdv/gerrit-post.tar gerrit-post.tar
+
+# 2. Images laden und pushen (Docker-Builder hat Zugriff auf den Daemon)
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    load_and_push() {
+      docker load -i $1.tar
+      docker push europe-west1-docker.pkg.dev/horizon-sdv/horizon-sdv/$2:1.0.0
+    }
+    load_and_push "kc-mcp" "keycloak-post-mcp-gateway-registry"
+    load_and_push "kc-jenkins" "keycloak-post-jenkins"
+    load_and_push "kc-main" "keycloak-post"
+    load_and_push "kc-argo" "keycloak-post-argocd"
+    load_and_push "kc-headlamp" "keycloak-post-headlamp"
+    load_and_push "grafana" "grafana-post"
+    load_and_push "gerrit-post" "gerrit-post"
+
+options:
+  machineType: 'E2_HIGHCPU_8'
+  diskSizeGb: '100'

@@ -62,8 +62,7 @@ pipeline {
             - name: host-lib-modules
               mountPath: /lib/modules
               readOnly: true
-        nodeSelector:
-          workloadLabel: openbsw
+         // nodeSelector:
         volumes:
           - name: host-lib-modules
             hostPath:

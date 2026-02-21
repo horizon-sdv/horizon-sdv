@@ -80,8 +80,7 @@ pipeline {
             requests:
               cpu: 98000m
               memory: 180000Mi
-        nodeSelector:
-          workloadLabel: android
+         // nodeSelector:
     """.stripIndent()
   }
 

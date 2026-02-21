@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['cp', 'gs://mein-horizon-tf-state-horizon-sdv/keycloak-image.tar', 'keycloak-image.tar']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['load', '-i', 'keycloak-image.tar']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'europe-west1-docker.pkg.dev/horizon-sdv/horizon-sdv/keycloak-post-grafana:1.0.0']

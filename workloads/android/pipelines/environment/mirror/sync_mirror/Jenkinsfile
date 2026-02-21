@@ -49,8 +49,7 @@ pipeline {
         labels:
           aosp_mirror_build_pod: "true"
       spec:
-        nodeSelector:
-            workloadLabel: "android"
+         // nodeSelector:
         tolerations:
         - key: "workloadType"
           value: "android"
@@ -249,8 +248,7 @@ pipeline {
           persistentVolumeClaim:
             claimName: ${AOSP_MIRROR_PRESET_FILESTORE_PVC_NAME}
 
-        nodeSelector:
-          workloadLabel: android
+         // nodeSelector:
     """.stripIndent()
 
     // Path for ops scripts

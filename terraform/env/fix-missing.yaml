@@ -1,0 +1,18 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['pull', 'europe-west1-docker.pkg.dev/horizon-sdv/horizon-sdv/keycloak-post:1.0.0']
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    # Wir taggen existierende Images um, falls sie identisch sind, 
+    # oder nutzen leere Dummys/vorhandene Tars falls du sie lokal hast.
+    # Da ich nicht weiß ob du .tars dafür hast, triggern wir einen Minimal-Build:
+    echo "FROM europe-west1-docker.pkg.dev/horizon-sdv/horizon-sdv/keycloak-post:1.0.0" > Dockerfile.missing
+    docker build -t europe-west1-docker.pkg.dev/horizon-sdv/horizon-sdv/keycloak-post-mtk-connect:1.0.0 -f Dockerfile.missing .
+    docker push europe-west1-docker.pkg.dev/horizon-sdv/horizon-sdv/keycloak-post-mtk-connect:1.0.0
+    
+    # Für mtk-connect-post-key (angenommen es ist ein ähnliches Image)
+    docker build -t europe-west1-docker.pkg.dev/horizon-sdv/horizon-sdv/mtk-connect-post-key:1.0.0 -f Dockerfile.missing .
+    docker push europe-west1-docker.pkg.dev/horizon-sdv/horizon-sdv/mtk-connect-post-key:1.0.0

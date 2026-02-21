@@ -68,8 +68,7 @@ pipeline {
             requests:
               cpu: 4000m
               memory: 16Gi
-        nodeSelector:
-          workloadLabel: android-abfs
+         // nodeSelector:
     """.stripIndent()
 
     def kubernetesPVPodTemplate = """
@@ -129,8 +128,7 @@ pipeline {
                       storage: ${ABFS_STORAGE_SIZE}
                   accessModes:
                     - ReadWriteOnce
-        nodeSelector:
-          workloadLabel: android-abfs
+         // nodeSelector:
     """.stripIndent()
   }
 

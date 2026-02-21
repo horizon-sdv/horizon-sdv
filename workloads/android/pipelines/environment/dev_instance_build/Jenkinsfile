@@ -90,8 +90,7 @@ pipeline {
                       storage: ${STORAGE_SIZE}
                   accessModes:
                     - ReadWriteOnce
-        nodeSelector:
-          workloadLabel: android
+         // nodeSelector:
     """.stripIndent()
 
     // Pod template with AOSP Mirror volume mounted as read-only
@@ -158,8 +157,7 @@ pipeline {
           - name: ${AOSP_MIRROR_PRESET_FILESTORE_PVC_NAME}
             persistentVolumeClaim:
               claimName: ${AOSP_MIRROR_PRESET_FILESTORE_PVC_NAME}
-        nodeSelector:
-          workloadLabel: android
+         // nodeSelector:
     """.stripIndent()
 
     def kubernetesAbfsPodTemplate = """
@@ -210,8 +208,7 @@ pipeline {
                       storage: ${ABFS_STORAGE_SIZE}
                   accessModes:
                     - ReadWriteOnce
-        nodeSelector:
-          workloadLabel: android-abfs
+         // nodeSelector:
     """.stripIndent()
 
   }
