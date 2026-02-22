@@ -13,5 +13,5 @@
 # limitations under the License.
 
 ARG NGINX_VERSION
-FROM nginx:alpine
+FROM nginx:${NGINX_VERSION}
 COPY html /usr/share/nginx/html

@@ -30,7 +30,8 @@ spec:
     spec:
       hostPID: true
       hostNetwork: true
-       // nodeSelector:
+      nodeSelector:
+        workloadLabel: openbsw
       tolerations:
         - key: "workloadType"
           operator: "Equal"

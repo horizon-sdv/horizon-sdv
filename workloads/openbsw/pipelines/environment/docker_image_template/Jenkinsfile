@@ -61,7 +61,8 @@ pipeline {
           imagePullPolicy: Always
           securityContext:
             privileged: true
-         // nodeSelector:
+        nodeSelector:
+          workloadLabel: openbsw
       """.stripIndent()
   }
 

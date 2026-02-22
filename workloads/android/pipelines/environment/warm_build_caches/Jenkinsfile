@@ -102,7 +102,8 @@ pipeline {
                       storage: 1000Gi
                   accessModes:
                     - ReadWriteOnce
-         // nodeSelector:
+        nodeSelector:
+          workloadLabel: android
     """.stripIndent()
 
     // Pod template with AOSP Mirror volume mounted as read-only
@@ -169,7 +170,8 @@ pipeline {
           - name: ${AOSP_MIRROR_PRESET_FILESTORE_PVC_NAME}
             persistentVolumeClaim:
               claimName: ${AOSP_MIRROR_PRESET_FILESTORE_PVC_NAME}
-         // nodeSelector:
+        nodeSelector:
+          workloadLabel: android
     """.stripIndent()
   }
 
