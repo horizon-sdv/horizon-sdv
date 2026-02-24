@@ -22,7 +22,7 @@ pipeline {
   environment {
     GERRIT_API_URL="https://${env.HORIZON_DOMAIN}/gerrit"
     POD_TEMPLATE = "${ABFS_CACHED_BUILD == "true" ? kubernetesPVPodTemplate : kubernetesBasicPodTemplate}"
-    ABFS_STORAGE_CLASS_SUFFIX="android-abfs"
+    ABFS_STORAGE_CLASS_SUFFIX="android-abfs-standard"
     ABFS_STORAGE_SIZE="750Gi"
 
     def kubernetesBasicPodTemplate = """
@@ -63,11 +63,11 @@ pipeline {
           - 5h
           resources:
             limits:
-              cpu: 4000m
-              memory: 16Gi
+              cpu: 32000m
+              memory: 32Gi
             requests:
-              cpu: 4000m
-              memory: 16Gi
+              cpu: 32000m
+              memory: 32Gi
         nodeSelector:
           workloadLabel: android-abfs
     """.stripIndent()
@@ -110,11 +110,11 @@ pipeline {
           - 5h
           resources:
             limits:
-              cpu: 4000m
-              memory: 16Gi
+              cpu: 32000m
+              memory: 32Gi
             requests:
-              cpu: 4000m
-              memory: 16Gi
+              cpu: 32000m
+              memory: 32Gi
           volumeMounts:
             - mountPath: /aaos-cache
               name: aaos-cache

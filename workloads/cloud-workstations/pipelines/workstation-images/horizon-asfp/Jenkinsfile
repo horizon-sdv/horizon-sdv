@@ -75,11 +75,11 @@ pipeline {
             privileged: true
           resources:
             limits:
-              cpu: 98000m
-              memory: 180000Mi
+              cpu: 32000m
+              memory: 32G
             requests:
-              cpu: 98000m
-              memory: 180000Mi
+              cpu: 32000m
+              memory: 32G
         nodeSelector:
           workloadLabel: android
     """.stripIndent()
